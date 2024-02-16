@@ -69,29 +69,46 @@ public class Dealer extends Actor
      * cards from the shuffled list and adding them to the sorted list.     
     **/
     
-    /* In this space write the pseudocode for your selection sort
-     * 
-     * 
-     * 
+    /* Compare 1st unsorted element to the entire array
+     * Swap it with smallest remaining element
      */
     private Card[] selectionSort(Card[] arr, int n)
     {
-        //put sort algorithm here
-        
+        for(int i = 0; i < arr.length; i++)
+        {
+            Card cardsSelected = arr[i];
+            int index = i;
+            for(int j = i + 1; j < arr.length; j++)
+            {
+                if(cardsSelected.getValue() > arr[j].getValue())
+                {
+                    cardsSelected = arr[j];
+                    index = j;
+                }
+            }
+            arr[index] = arr[i];
+            arr[i] = cardsSelected;
+        }
         return selectionSort;
     }
     
-    /* In this space write the pseudocode for your insertion sort
-     * 
-     * 
-     * 
+    /* Compare 1st unsorted element of the array with the sorted array
+     * Insert into the correct position of the sorted array
      */
     private Card[] insertionSort(Card[] arr, int n)
     {
-        
-        //put sort algorithm here
-        
-        return insertionSort;
+        for(int i = 1; i < n; i++)
+        {
+            Card key = arr[i];
+            int j = i - 1;
+            while(j >= 0 && arr[j].getValue() > key.getValue())
+            {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1]= key;
+        }
+        return arr;
     }
     
     /* In this space write the pseudocode for your merge sort
